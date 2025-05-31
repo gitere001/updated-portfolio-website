@@ -107,7 +107,8 @@ const Navbar: React.FC = () => {
           ))}
           <SocialLinks className="justify-center" />
           <a
-            href="/james-gitere-cv.pdf"
+            download=""
+            href="James_Gitere_Cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors text-center"
