@@ -45,7 +45,7 @@ const Skills: React.FC = () => {
     },
     {
       title: "Frontend Development",
-      skills: ["React", "Redux Toolkit", "HTML", "CSS", "Tailwind CSS"],
+      skills: ["React", "Redux Toolkit", "HTML", "CSS", "Tailwind CSS", "Next.js"],
     },
     {
       title: "Backend Development",
@@ -58,7 +58,8 @@ const Skills: React.FC = () => {
         "Paystack Integration",
         "Email Integration (Postmark, Elastic Email)",
         "SMS Integration (Africa's Talking)",
-        "Cloudinary (cloud media storage and management)"
+        "Cloudinary (cloud media storage and management)",
+        "Ai Integration (OpenAI, ChatGPT)"
 
 
       ],

@@ -23,12 +23,26 @@ const Projects: React.FC = () => {
       image: "/d4a-academy.png"
     },
     {
+      title: "AI Wine Chatbot",
+      description: "AI automation chatbot built with OpenAI API to respond about wines, deliveries, and more.",
+      technologies: ["OpenAI API", "React", "Express", "MongoDB"],
+      liveUrl: "https://jayswine-chatbot.vercel.app/",
+      image: "/winechatbot.png"
+    },
+    {
       title: "Recipe Genius",
       description: "AI-powered recipe suggestion application that generates recipe ideas based on user preferences.",
       technologies: ["React", "Node.js", "Express", "MongoDB", "JWT", "OpenAPI"],
       liveUrl: "https://recipegenius-one.vercel.app/",
       githubUrl: "https://github.com/gitere001/Recipe-Genius",
       image: "/recipe-genius-landing.png"
+    },
+    {
+      title: "Masterclass Automation",
+      description: "Full masterclass automation—from payment to automated emails and reminders.",
+      technologies: ["Paystack", "React", "Express", "MongoDB", "Postmark API", "Webhook"],
+      liveUrl: "https://masterclass.digital4africa.com/",
+      image: "/masterclass.png"
     },
     {
       title: "Cowork Booking",
@@ -38,20 +52,9 @@ const Projects: React.FC = () => {
       githubUrl: "https://github.com/gitere001/Co-working-space",
       image: "/co-work-space.png"
     },
-    {
-      title: "Skillup",
-      description: "Digital learning marketplace for Kenyan experts to share their knowledge and skills.",
-      technologies: ["React", "Node.js", "PostgreSQL"],
-      githubUrl: "https://github.com/gitere001/Skillup",
-      image: "/skillup1.png"
-    },
-    {
-      title: "BookSwap Connect",
-      description: "Peer-to-peer book exchange platform enabling users to trade books with others in their community.",
-      technologies: ["React", "Python", "MySQL"],
-      githubUrl: "https://github.com/gitere001/Bookswap-connect",
-      image: "/bookswapconnect1.png"
-    }
+
+
+
   ];
 
   return (
