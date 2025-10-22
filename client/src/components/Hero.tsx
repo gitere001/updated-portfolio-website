@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
             className="space-y-6 lg:space-y-8"
           >
             {/* Greeting badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
               <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
                 Available for opportunities
               </span>
-            </motion.div>
+            </motion.div> */}
 
             {/* Main heading */}
             <motion.div
