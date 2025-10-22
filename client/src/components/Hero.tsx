@@ -70,7 +70,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="space-y-4"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 <span className="block text-slate-900 dark:text-slate-100">
                   Hi, I'm
                 </span>
