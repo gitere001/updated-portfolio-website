@@ -43,7 +43,7 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="flex items-center justify-between">
-        <a href="#" className="text-2xl font-bold gradient-text">
+        <a href="#" className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-500 dark:from-emerald-500 dark:to-emerald-400 bg-clip-text text-transparent">
           JG
         </a>
 
@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-foreground hover:text-emerald-600 dark:hover:text-emerald-500 transition-colors font-medium"
             >
               {link.name}
             </a>
@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
             href="James_Gitere_Cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors"
+            className="bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white px-4 py-2 rounded-md transition-colors font-medium"
           >
             Download CV
           </a>
@@ -99,7 +99,7 @@ const Navbar: React.FC = () => {
             <a
               key={link.name}
               href={link.href}
-              className="text-foreground hover:text-primary transition-colors text-lg"
+              className="text-foreground hover:text-emerald-600 dark:hover:text-emerald-500 transition-colors text-lg font-medium"
               onClick={toggleMenu}
             >
               {link.name}
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
             href="James_Gitere_Cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md transition-colors text-center"
+            className="bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white px-4 py-2 rounded-md transition-colors text-center font-medium"
           >
             Download CV
           </a>

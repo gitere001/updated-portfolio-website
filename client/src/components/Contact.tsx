@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Mail, Phone } from "lucide-react";
-import ContactModal from "./ContactModal"; // Adjust path as needed
+import { motion } from "framer-motion";
+import ContactModal from "./ContactModal";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -54,14 +55,13 @@ const Contact: React.FC = () => {
     try {
       const payload = {
         name: formData.name,
-        email: formData.email,  // Changed from userEmail to email to match backend
+        email: formData.email,
         message: formData.message,
-        ...(formData.subject && { subject: formData.subject }) // Include subject only if it exists
+        ...(formData.subject && { subject: formData.subject })
       };
 
-      // Single API call to the new endpoint
       const response = await axios.post(
-        `${apiUrl}/api/v1/contact-form/contact`, // Updated endpoint
+        `${apiUrl}/api/v1/contact-form/contact`,
         payload
       );
 
@@ -90,7 +90,7 @@ const Contact: React.FC = () => {
     } catch (error) {
       console.error("Form submission error:", error);
       const fallbackMessage =
-        error?.response?.data?.error || // Changed to match backend error response
+        error?.response?.data?.error ||
         error?.response?.data?.message ||
         "Network error. Please check your connection and try again.";
 
@@ -111,26 +111,49 @@ const Contact: React.FC = () => {
 
   return (
     <>
-      <section id="contact">
-        <div className="container mx-auto p-[0.5rem] md:p-[2rem]">
-          <h2 className="section-title">Get In Touch</h2>
+      <section
+        id="contact"
+        className="py-20 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
+      >
+        <div className="container mx-auto px-4 md:px-8">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-slate-900 to-slate-700 dark:from-slate-100 dark:to-slate-300 bg-clip-text text-transparent">
+              Get In Touch
+            </h2>
+            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Have a project in mind or want to collaborate? Feel free to reach out
+            </p>
+          </motion.div>
 
-          <div className="max-w-3xl mx-auto mt-16">
+          <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Contact Info Cards */}
-              <div className="space-y-4">
-                <div className="group relative overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/15">
-                  <div className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
-                    <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300">
-                      <Mail className="h-5 w-5 sm:h-6 sm:w-6" />
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="space-y-4"
+              >
+                <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="p-6 flex items-center gap-4">
+                    <div className="flex-shrink-0 h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Mail className="h-6 w-6" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base mb-1">
+                      <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-base mb-1">
                         Email
                       </h3>
                       <a
                         href="mailto:gitere.dev@gmail.com"
-                        className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 text-sm sm:text-base break-all"
+                        className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 text-sm break-all"
                       >
                         gitere.dev@gmail.com
                       </a>
@@ -138,107 +161,132 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="group relative overflow-hidden rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/15">
-                  <div className="p-4 sm:p-6 flex items-center gap-3 sm:gap-4">
-                    <div className="flex-shrink-0 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center group-hover:bg-green-500/20 transition-colors duration-300">
-                      <Phone className="h-5 w-5 sm:h-6 sm:w-6" />
+                <div className="group relative overflow-hidden rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl hover:border-emerald-500/30 transition-all duration-300">
+                  <div className="p-6 flex items-center gap-4">
+                    <div className="flex-shrink-0 h-12 w-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <Phone className="h-6 w-6" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 dark:text-white text-sm sm:text-base mb-1">
+                      <h3 className="font-semibold text-slate-900 dark:text-slate-100 text-base mb-1">
                         Phone
                       </h3>
                       <a
                         href="tel:+254714584667"
-                        className="text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors duration-200 text-sm sm:text-base"
+                        className="text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200 text-sm"
                       >
                         +254714584667
                       </a>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Contact Form */}
-              <Card className="md:col-span-2 glass">
-                <CardHeader>
-                  <h3 className="text-xl font-bold">Send me a message</h3>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="md:col-span-2"
+              >
+                <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-xl hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-300">
+                  <CardHeader>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+                      Send me a message
+                    </h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                      I'll get back to you as soon as possible
+                    </p>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label
+                            htmlFor="name"
+                            className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                          >
+                            Name
+                          </label>
+                          <Input
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border-slate-300 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-emerald-500"
+                            disabled={isLoading}
+                          />
+                        </div>
+                        <div>
+                          <label
+                            htmlFor="email"
+                            className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                          >
+                            Email
+                          </label>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            required
+                            className="w-full border-slate-300 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-emerald-500"
+                            disabled={isLoading}
+                          />
+                        </div>
+                      </div>
+
                       <div>
-                        <label htmlFor="name" className="block text-sm mb-1">
-                          Name
+                        <label
+                          htmlFor="subject"
+                          className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                        >
+                          Subject
                         </label>
                         <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
                           onChange={handleInputChange}
                           required
-                          className="w-full"
+                          className="w-full border-slate-300 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-emerald-500"
                           disabled={isLoading}
                         />
                       </div>
+
                       <div>
-                        <label htmlFor="email" className="block text-sm mb-1">
-                          Email
+                        <label
+                          htmlFor="message"
+                          className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                        >
+                          Message
                         </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
+                        <Textarea
+                          id="message"
+                          name="message"
+                          rows={5}
+                          value={formData.message}
                           onChange={handleInputChange}
                           required
-                          className="w-full"
+                          className="w-full border-slate-300 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-500 focus:ring-emerald-500 resize-none"
                           disabled={isLoading}
                         />
                       </div>
-                    </div>
 
-                    <div>
-                      <label htmlFor="subject" className="block text-sm mb-1">
-                        Subject
-                      </label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full"
+                      <Button
+                        type="submit"
+                        className="w-full sm:w-auto gap-2 bg-emerald-600 hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 px-8"
                         disabled={isLoading}
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm mb-1">
-                        Message
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                        className="w-full"
-                        disabled={isLoading}
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full sm:w-auto gap-2"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Sending..." : "Send Message"}
-                      <Send className="h-4 w-4" />
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
+                      >
+                        {isLoading ? "Sending..." : "Send Message"}
+                        <Send className="h-4 w-4" />
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </div>
         </div>
