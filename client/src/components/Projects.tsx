@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface Project {
@@ -86,22 +86,32 @@ const Projects: React.FC = () => {
     },
   ];
 
+  // ✅ Preload all project images for instant switching
+  useEffect(() => {
+    projects.forEach((project) => {
+      project.images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    });
+  }, []);
+
   const nextImage = (projectIndex: number, totalImages: number) => {
-    setCurrentImageIndex(prev => ({
+    setCurrentImageIndex((prev) => ({
       ...prev,
       [projectIndex]: ((prev[projectIndex] || 0) + 1) % totalImages,
     }));
   };
 
   const prevImage = (projectIndex: number, totalImages: number) => {
-    setCurrentImageIndex(prev => ({
+    setCurrentImageIndex((prev) => ({
       ...prev,
       [projectIndex]: ((prev[projectIndex] || 0) - 1 + totalImages) % totalImages,
     }));
   };
 
   const goToImage = (projectIndex: number, imageIndex: number) => {
-    setCurrentImageIndex(prev => ({
+    setCurrentImageIndex((prev) => ({
       ...prev,
       [projectIndex]: imageIndex,
     }));
@@ -113,7 +123,6 @@ const Projects: React.FC = () => {
       className="py-20 bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
     >
       <div className="container mx-auto px-4 md:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -129,7 +138,6 @@ const Projects: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {projects.map((project, projectIndex) => {
             const currentIndex = currentImageIndex[projectIndex] || 0;
@@ -144,15 +152,15 @@ const Projects: React.FC = () => {
                 transition={{ duration: 0.5, delay: projectIndex * 0.1 }}
               >
                 <Card className="overflow-hidden hover:shadow-2xl hover:border-emerald-500/30 transition-all duration-300 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 h-full flex flex-col group">
-                  {/* Image Gallery */}
                   <div className="relative aspect-video overflow-hidden bg-slate-100 dark:bg-slate-900">
                     <img
                       src={project.images[currentIndex]}
                       alt={`${project.title} - View ${currentIndex + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-150 group-hover:scale-105"
                       onError={(e) => {
                         e.currentTarget.src = "/placeholder.svg";
                       }}
+                      loading="eager"
                     />
 
                     {hasMultipleImages && (
@@ -254,7 +262,6 @@ const Projects: React.FC = () => {
           })}
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
