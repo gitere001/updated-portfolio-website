@@ -50,18 +50,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="space-y-6 lg:space-y-8"
           >
-            {/* Greeting badge */}
-            {/* <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700"
-            >
-              <Sparkles className="w-4 h-4 text-slate-700 dark:text-slate-300" />
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
-                Available for opportunities
-              </span>
-            </motion.div> */}
+        
 
             {/* Main heading */}
             <motion.div

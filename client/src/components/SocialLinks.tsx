@@ -28,7 +28,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ className }) => {
           href={link.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-foreground hover:text-primary transition-colors duration-300"
+          className="text-foreground hover:text-emerald-600 transition-colors duration-300"
           aria-label={link.name}
         >
           {link.icon}
